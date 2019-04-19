@@ -1,0 +1,7 @@
+{
+  "name": "salamancamovil",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
