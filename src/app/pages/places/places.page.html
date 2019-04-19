@@ -1,0 +1,65 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-button (click)='goBack()' color="primary" fill="clear" size="large">
+      <ion-icon name="arrow-round-back">
+      </ion-icon>
+    </ion-button>
+    <ion-title>Lugares</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Place Highlights -->
+  <!--<ion-row>
+    <p>Highlights Places</p>
+  </ion-row>-->
+
+  <!-- Place List -->
+  <ion-row>
+    <ion-col *ngFor="let place of places" size="12">
+      <ion-card class="custom_card">
+        <ion-card-header class="custom_card_header" (click)='goToPlaceDetail(place.id)'>
+
+          <div *ngIf="place.images.length>0;else none_img">
+            <img data-src="{{place.images[0].imagen}}">
+          </div>
+          <ng-template #none_img>
+            <img src="assets/images/background_black.jpg">
+          </ng-template>
+          <div class="custom_overlay">
+            <div class="card-title">
+              <h6>{{ place.titulo }}</h6>
+            </div>
+            <div class="card-subtitle">
+              <p>{{ place.subtitulo }}</p>
+            </div>
+          </div>
+        </ion-card-header>
+        <ion-card-content class="custom_card_content">
+          <ion-grid class="custom_grid">
+            <ion-row>
+              <ion-col class="custom_col" size="12">
+                <ion-button *ngIf='place.promo_place.length > 0' (click)='goToPromoList(place.id)' color="primary" expand="full" fill="clear" size="small">
+                  <ion-icon name="trophy"> </ion-icon> Promociones
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <!--<ion-button *ngIf='place.promo_place.length > 0' (click)='goToPromoList(place.id)'>
+    <p>Promos</p>
+  </ion-button>-->
+
+  <ion-fab slot=fixed vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="options"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

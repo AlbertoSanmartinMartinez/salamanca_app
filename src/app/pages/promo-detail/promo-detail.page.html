@@ -1,0 +1,61 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-button (click)='goBack()' color="primary" fill="clear" size="large">
+      <ion-icon name="arrow-round-back">
+      </ion-icon>
+    </ion-button>
+    <ion-title class="custom_title"><p>{{ promo.titulo }}</p></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Template -->
+<ion-content>
+
+  <!-- Images Slide -->
+  <div *ngIf="promo.images.length>0;else none_img">
+    <ion-slides pager="true" class="custom-slides">
+      <ion-slide *ngFor="let img of promo.images">
+        <img data-src="{{img.imagen}}">
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <ng-template #none_img>
+    <img src="assets/images/background_black.jpg">
+  </ng-template>
+
+  <ion-grid>
+
+    <!-- Dates -->
+    <!--<ion-row>
+      <ion-col>
+        <ion-badge color="light">{{ promo.created_date }}</ion-badge>
+      </ion-col>
+    </ion-row>-->
+
+    <!-- Category -->
+    <ion-row>
+      <ion-col>
+        <ion-badge color="light">{{ promo.categoria.titulo }}</ion-badge>
+      </ion-col>
+    </ion-row>
+
+    <!-- Subtitle -->
+    <ion-row>
+      <ion-col>
+        <p>{{ promo.subtitulo }}</p>
+      </ion-col>
+    </ion-row>
+
+    <!-- Info -->
+    <ion-row>
+      <ion-col>
+        <h5>INFORMACIÓN</h5>
+        <hr>
+        <p>{{ promo.informacion }}</p>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,35 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content>
+  
+  <ion-row>
+    <ion-col *ngFor="let event of events" size="12">
+      <ion-card class="custom_card" (click)='goToEventDetail(event.id)'>
+        <ion-card-header class="custom_card_header">
+
+          <div *ngIf="event.images.length>0;else none_img">
+            <img data-src="{{event.images[0].imagen}}">
+          </div>
+          <ng-template #none_img>
+            <img src="assets/images/background_black.jpg">
+          </ng-template>
+
+        </ion-card-header>
+        <ion-card-content>
+          {{ event.titulo }}
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <ion-fab slot=fixed vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="options"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

@@ -1,0 +1,59 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-button (click)='goBack()' color="primary" fill="clear" size="large">
+      <ion-icon name="arrow-round-back">
+      </ion-icon>
+    </ion-button>
+    <ion-title>Promociones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Template -->
+<ion-content>
+
+  <!-- Promo Highlights -->
+
+  <!-- Promo List -->
+  <ion-row>
+    <ion-col *ngFor="let promo of promos" size="12">
+      <ion-card class="custom_card">
+        <ion-card-header class="custom_card_header" (click)='goToPromoDetail(promo.id)'>
+
+          <div *ngIf="promo.images.length>0;else none_img">
+            <img data-src="{{promo.images[0].imagen}}">
+          </div>
+          <ng-template #none_img>
+            <img src="assets/images/background_black.jpg">
+          </ng-template>
+          <div class="custom_overlay">
+            <div class="card-title">
+              <h6>{{ promo.titulo }}</h6>
+            </div>
+            <div class="card-subtitle">
+              <p>{{ promo.subtitulo }}</p>
+            </div>
+          </div>
+        </ion-card-header>
+        <ion-card-content class="custom_card_content">
+          <!--<ion-grid class="custom_grid">
+            <ion-row>
+              <ion-col class="custom_col" size="12">
+                <ion-button *ngIf='place.promo_place.length > 0' (click)='goToPromoList(place.id)' color="primary" expand="full" fill="clear" size="small">
+                  <ion-icon name="trophy"> </ion-icon> Promociones
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>-->
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <ion-fab slot=fixed vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="options"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

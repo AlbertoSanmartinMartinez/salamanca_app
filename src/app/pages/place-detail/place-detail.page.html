@@ -1,0 +1,140 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-button (click)='goBack()' color="primary" fill="clear" size="large">
+      <ion-icon name="arrow-round-back">
+      </ion-icon>
+    </ion-button>
+    <ion-title class="custom_title"><p>{{ place.titulo }}</p></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Template -->
+<ion-content>
+
+  <!-- Slide -->
+  <div *ngIf="place.images.length>0;else none_img">
+    <ion-slides pager="true" class="custom-slides">
+      <ion-slide *ngFor="let img of place.images">
+        <img data-src="{{img.imagen}}">
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <ng-template #none_img>
+    <img src="assets/images/background_black.jpg">
+  </ng-template>
+
+  <!-- Category -->
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-badge color="light">{{ category.titulo }}</ion-badge>
+      </ion-col>
+    </ion-row>
+
+  <!-- Promos -->
+  <ion-row>
+    <ion-col>
+      <ion-button *ngIf='place.promo_place.length > 0' (click)='goToPromoList(place.id)' color="light" expand="full" shape="undefined">
+        <ion-icon name="trophy">
+        </ion-icon>
+        <p> Promociones</p>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <!-- Puntuacion -->
+  <!--<ion-button *ngIf='place.promo_place.length > 0' (click)='goToPromoList(place.id)'>
+    <p>Promos</p>
+  </ion-button>-->
+
+  <!-- Info -->
+  <ion-row>
+    <ion-col>
+      <h5>INFORMACIÓN</h5>
+      <hr>
+      <p>{{ place.informacion }}</p>
+    </ion-col>
+  </ion-row>
+
+  <!-- Prices -->
+  <ion-row *ngIf='place.price_place.length>0'>
+    <ion-col>
+      <h5>PRECIOS</h5>
+      <hr>
+      <div *ngFor='let price of place.price_place'>
+        <p>{{ price.titulo }}: {{ price.cantidad }} €</p>
+        <p>{{ price.informacion }}</p>
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <!-- Schedules -->
+  <ion-row *ngIf='place.schedule_place.length>0'>
+    <ion-col>
+      <h5>Horarios</h5>
+      <hr>
+      <div *ngFor='let schedule of place.schedule_place'>
+        <p>{{ schedule.titulo }}:</p>
+        <p>{{ schedule.informacion }}</p>
+        <div *ngIf='schedule.schedule_periods.length>0'>
+          <div *ngFor='let period of schedule.schedule_periods'>
+            <p>{{ period.dia }}: {{ period.inicio }} a {{ period.fin }}</p>
+          </div>
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <!-- Map -->
+  <ion-row>
+    <ion-col>
+      <h5>MAPA</h5>
+      <hr>
+      <div id="map">
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <!-- Servicios -->
+  <ion-row *ngIf='place.servicios'>
+    <ion-col>
+      <h5>SERVICIOS</h5>
+      <hr>
+      <p>{{ place.servicios }}</p>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <h5>CONTACTO</h5>
+      <hr>
+      <ion-button *ngIf='place.telefono1' color="secondary" expand="block" fill="solid" size="default">
+        {{ place.telefono1 }}
+      </ion-button>
+      <ion-button *ngIf='place.telefono2' color="secondary" expand="block" fill="solid" size="default">
+        {{ place.telefono2 }}
+      </ion-button>
+      <ion-button *ngIf='place.url' color="secondary" expand="block" fill="solid" size="default">
+        {{ place.url }}
+      </ion-button>
+      <ion-button *ngIf='place.reserva' color="secondary" expand="block" fill="solid" size="default">
+        {{ place.reserva }}
+      </ion-button>
+      <ion-button *ngIf='place.compra' color="secondary" expand="block" fill="solid" size="default">
+        {{ place.compra }}
+      </ion-button>
+      <ion-button *ngIf='place.vista360' color="secondary" expand="block" fill="solid" size="default">
+        {{ place.vista360 }}
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  </ion-grid>
+
+</ion-content>
+
+
+
+
+<!-- -->

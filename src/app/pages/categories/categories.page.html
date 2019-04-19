@@ -1,0 +1,60 @@
+
+<ion-header *ngIf='parent_category'>
+  <ion-toolbar>
+    <ion-button (click)='goBack()' color="primary" fill="clear" size="large">
+      <ion-icon name="arrow-round-back">
+      </ion-icon>
+    </ion-button>
+    <ion-title>{{ parent_category.titulo }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+  <!-- Template -->
+  <ion-content>
+
+    <ion-row>
+      <ion-col *ngFor="let category of categories" size="12">
+        <ion-card class="custom_card">
+          <ion-card-header class="custom_card_header" (click)="goToCategoryList(category.id)">
+            <div *ngIf="category.images.length>0;else none_img">
+              <img data-src="{{category.images[0].imagen}}">
+            </div>
+            <ng-template #none_img>
+              <img src="assets/images/background_black.jpg">
+            </ng-template>
+            <div class="custom_overlay">
+              <div class="card-title">
+                <h6>{{ category.titulo }}</h6>
+              </div>
+              <div class="card-subtitle">
+                <p>{{ category.subtitulo }}</p>
+              </div>
+            </div>
+          </ion-card-header>
+          <ion-card-content class="custom_card_content">
+            <ion-grid class="custom_grid">
+              <ion-row>
+                <ion-col class="custom_col" size="12">
+                  <ion-button *ngIf='category.place_category.length > 0' (click)='goToPlaceList(category.id)' color="primary" expand="full" fill="clear" size="small">
+                    <ion-icon name="pin"></ion-icon><p>Lugares</p>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-fab slot=fixed vertical="bottom" horizontal="end">
+      <ion-fab-button>
+        <ion-icon name="options"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+  </ion-content>
+
+
+
+
+<!-- -->
