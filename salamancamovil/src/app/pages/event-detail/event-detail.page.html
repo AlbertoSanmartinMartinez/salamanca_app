@@ -1,16 +1,17 @@
 
 <ion-header>
   <ion-toolbar>
-    <ion-button (click)='goBack()' color="primary" fill="clear" size="large">
-      <ion-icon name="arrow-round-back">
-      </ion-icon>
-    </ion-button>
-    <ion-title class="custom_title"><p>{{ event.titulo }}</p></ion-title>
+    <div *ngIf='event!==undefined'>
+      <ion-button (click)='goBack()' color="primary" fill="clear" size="large">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+      <ion-title class="custom_title"><p>{{ event.titulo }}</p></ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <!-- Template -->
-<ion-content>
+<ion-content *ngIf='event!==undefined'>
 
   <!-- Slide -->
   <div *ngIf="event.images.length>0;else none_img">

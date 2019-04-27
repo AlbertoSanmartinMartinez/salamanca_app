@@ -5,12 +5,12 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 // Google Maps
-//import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng } from '@ionic-native/google-maps/ngx';
-//import { Geolocation } from '@ionic-native/geolocation';
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, MarkerOptions, Marker } from '@ionic-native/google-maps';
 
 // Services
 import { PlacesService } from '../../services/places.service';
 import { CategoriesService } from '../../services/categories.service';
+
 
 @Component({
   selector: 'app-place-detail',
@@ -22,24 +22,25 @@ export class PlaceDetailPage implements OnInit {
 
   place: any;
   category: any;
-  //map: GoogleMap;
+  place_map: GoogleMap;
 
   constructor(
     private router: Router,
     private placesService: PlacesService,
     private categoriesService: CategoriesService,
     private activatedRoute: ActivatedRoute,
-    //private googleMaps: GoogleMaps
-    //private geolocation: Geolocation
-    //private platform: Platform
+    private googleMaps: GoogleMaps,
+    //private platform: Platform,
   ) {
 
-    }
+  }
 
   ngOnInit() {
+    console.log("angular init page function");
 
     var category_id = this.activatedRoute.snapshot.paramMap.get('category_id');
 
+    this.initMap();
     this.getPlace();
     this.getCategory(category_id);
   }
@@ -55,7 +56,22 @@ export class PlaceDetailPage implements OnInit {
         (result) => {
           this.place = result;
           console.log(this.place);
-          //this.loadMap();
+
+          this.place_map.one(GoogleMapsEvent.MAP_READY).then((data:any) => {
+
+            let position: LatLng = new LatLng(this.place.latitud, this.place.longitud);
+
+            this.place_map.animateCamera({
+              target: position,
+              zoom: 18
+            });
+
+            this.place_map.addMarker({
+              position: position,
+              title: this.place.titulo
+            });
+
+          });
         },
         (error) => {
           console.log(error);
@@ -78,25 +94,11 @@ export class PlaceDetailPage implements OnInit {
   }
 
   // Map
-  /*loadMap() {
-    console.log("load place map function")
+  initMap() {
+    console.log("init place map function")
 
-    this.map = GoogleMaps.create('map');
-    this.map.one(GoogleMapsEvent.MAP_READY).then((data:any) => {
-
-      let myPosition: LatLng = new LatLng(this.place.latitude, this.place.longitude);
-
-      this.map.animateCamera({
-        target: myPosition,
-        zoom: 20
-      });
-
-      this.map.addMarker({
-        position: myPosition,
-        title: 'First'
-      });
-    })
-  }*/
+    this.place_map = GoogleMaps.create('place_map');
+  }
 
   // Navigate
   goToPromoList(place_id?:string) {
@@ -107,15 +109,8 @@ export class PlaceDetailPage implements OnInit {
 
   goBack() {
     console.log('go back function');
-    /*
-    var paths = this.router.url.split("/");
-    var new_path = "/app";
-    for (var i=2; i < paths.length-1; i++) {
-      new_path += "/" + paths[i];
-    }
-    console.log(new_path)
-    */
-    this.router.navigate(['/app/categories', { parent_category_id: this.category.categoria_padre }])
+
+    this.router.navigateByUrl('/app/categories/' + this.category.id + '/places')
   }
 
 }

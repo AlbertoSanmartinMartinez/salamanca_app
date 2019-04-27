@@ -1,11 +1,17 @@
 
-<ion-header *ngIf='parent_category'>
+<ion-header>
   <ion-toolbar>
-    <ion-button (click)='goBack()' color="primary" fill="clear" size="large">
-      <ion-icon name="arrow-round-back">
-      </ion-icon>
-    </ion-button>
-    <ion-title>{{ parent_category.titulo }}</ion-title>
+    <div *ngIf='parent_category!==undefined;else main_header'>
+      <ion-button *ngIf='parent_category !== undefined;else main_header' (click)='goBack()' color="primary" fill="clear" size="large">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+      <ion-title>
+        {{ parent_category.titulo }}
+      </ion-title>
+    </div>
+    <ng-template #main_header>
+      <ion-title>Salamanca Móvil</ion-title>
+    </ng-template>
   </ion-toolbar>
 </ion-header>
 
@@ -46,11 +52,11 @@
       </ion-col>
     </ion-row>
 
-    <ion-fab slot=fixed vertical="bottom" horizontal="end">
+    <!--<ion-fab slot=fixed vertical="bottom" horizontal="end">
       <ion-fab-button>
         <ion-icon name="options"></ion-icon>
       </ion-fab-button>
-    </ion-fab>
+    </ion-fab>-->
 
   </ion-content>
 

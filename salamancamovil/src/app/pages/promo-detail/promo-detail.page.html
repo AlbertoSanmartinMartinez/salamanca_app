@@ -1,16 +1,17 @@
 
 <ion-header>
   <ion-toolbar>
-    <ion-button (click)='goBack()' color="primary" fill="clear" size="large">
-      <ion-icon name="arrow-round-back">
-      </ion-icon>
-    </ion-button>
-    <ion-title class="custom_title"><p>{{ promo.titulo }}</p></ion-title>
+    <div *ngIf='promo!==undefined'>
+      <ion-button (click)='goBack()' color="primary" fill="clear" size="large">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+      <ion-title class="custom_title"><p>{{ promo.titulo }}</p></ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <!-- Template -->
-<ion-content>
+<ion-content *ngIf='promo!==undefined'>
 
   <!-- Images Slide -->
   <div *ngIf="promo.images.length>0;else none_img">
@@ -32,13 +33,6 @@
         <ion-badge color="light">{{ promo.created_date }}</ion-badge>
       </ion-col>
     </ion-row>-->
-
-    <!-- Category -->
-    <ion-row>
-      <ion-col>
-        <ion-badge color="light">{{ promo.categoria.titulo }}</ion-badge>
-      </ion-col>
-    </ion-row>
 
     <!-- Subtitle -->
     <ion-row>

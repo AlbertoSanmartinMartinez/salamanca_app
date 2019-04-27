@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'app', redirectTo: '/app/categories', pathMatch: 'full' },
   { path: 'app', loadChildren: './pages/tabs/tabs.module#TabsPageModule' },
   { path: '**', redirectTo: '/app' },
+  //{ path: 'splashscreen', loadChildren: './splashscreen/splashscreen.module#SplashscreenPageModule' },
 ];
 
 @NgModule({

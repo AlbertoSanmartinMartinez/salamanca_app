@@ -1,16 +1,18 @@
 
 <ion-header>
   <ion-toolbar>
-    <ion-button (click)='goBack()' color="primary" fill="clear" size="large">
-      <ion-icon name="arrow-round-back">
-      </ion-icon>
-    </ion-button>
-    <ion-title class="custom_title"><p>{{ place.titulo }}</p></ion-title>
+    <div *ngIf='place!==undefined'>
+      <ion-button (click)='goBack()' color="primary" fill="clear" size="large">
+        <ion-icon name="arrow-round-back">
+        </ion-icon>
+      </ion-button>
+      <ion-title class="custom_title"><p>{{ place.titulo }}</p></ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <!-- Template -->
-<ion-content>
+<ion-content *ngIf='place!==undefined'>
 
   <!-- Slide -->
   <div *ngIf="place.images.length>0;else none_img">
@@ -26,7 +28,7 @@
 
   <!-- Category -->
   <ion-grid>
-    <ion-row>
+    <ion-row *ngIf='category!==undefined'>
       <ion-col>
         <ion-badge color="light">{{ category.titulo }}</ion-badge>
       </ion-col>
@@ -87,11 +89,11 @@
   </ion-row>
 
   <!-- Map -->
-  <ion-row>
+  <ion-row *ngIf='place.latitud && place.longitud'>
     <ion-col>
       <h5>MAPA</h5>
       <hr>
-      <div id="map">
+      <div id="place_map">
       </div>
     </ion-col>
   </ion-row>
@@ -109,23 +111,26 @@
     <ion-col>
       <h5>CONTACTO</h5>
       <hr>
-      <ion-button *ngIf='place.telefono1' color="secondary" expand="block" fill="solid" size="default">
-        {{ place.telefono1 }}
+      <ion-button *ngIf='place.telefono1' color="secondary" expand="block" fill="solid" size="default" href='tel:{{place.telefono1}}'>
+        Llamar
       </ion-button>
-      <ion-button *ngIf='place.telefono2' color="secondary" expand="block" fill="solid" size="default">
-        {{ place.telefono2 }}
+      <ion-button *ngIf='place.telefono2' color="secondary" expand="block" fill="solid" size="default" href='tel:{{place.telefono2}}'>
+        Llamar
       </ion-button>
-      <ion-button *ngIf='place.url' color="secondary" expand="block" fill="solid" size="default">
-        {{ place.url }}
+      <ion-button color="secondary" expand="block" fill="solid" size="default" href='mailto:{{place.mail}}'>
+        Email
       </ion-button>
-      <ion-button *ngIf='place.reserva' color="secondary" expand="block" fill="solid" size="default">
-        {{ place.reserva }}
+      <ion-button *ngIf='place.url' color="secondary" expand="block" fill="solid" size="default" href='{{place.url}}' target="_blank">
+        Web
       </ion-button>
-      <ion-button *ngIf='place.compra' color="secondary" expand="block" fill="solid" size="default">
-        {{ place.compra }}
+      <ion-button *ngIf='place.reserva' color="secondary" expand="block" fill="solid" size="default" href='{{place.url}}' target="_blank">
+        Reservar
       </ion-button>
-      <ion-button *ngIf='place.vista360' color="secondary" expand="block" fill="solid" size="default">
-        {{ place.vista360 }}
+      <ion-button *ngIf='place.compra' color="secondary" expand="block" fill="solid" size="default" href='{{place.url}}' target="_blank">
+        Tienda
+      </ion-button>
+      <ion-button *ngIf='place.vista360' color="secondary" expand="block" fill="solid" size="default" href='{{place.url}}' target="_blank">
+        Vista 360º
       </ion-button>
     </ion-col>
   </ion-row>

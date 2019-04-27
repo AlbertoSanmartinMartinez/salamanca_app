@@ -13,6 +13,9 @@ import { CategoriesPage } from './categories.page';
 //Services
 import { CategoriesService } from '../../services/categories.service';
 
+// Resolvers
+//import { CategoriesResolver } from './categories.resolver';
+
 // Routers
 import { CategoriesPageRoutingModule } from './categories.router.module';
 
@@ -29,6 +32,7 @@ import { CategoriesPageRoutingModule } from './categories.router.module';
   ],
   providers: [
     CategoriesService
+    //CategoriesResolver
   ]
 })
 export class CategoriesPageModule {}

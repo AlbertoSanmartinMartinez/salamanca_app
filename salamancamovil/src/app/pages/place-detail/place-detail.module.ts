@@ -4,10 +4,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+//import { Platform } from "ionic-angular";
 
 //Maps
-//import { GoogleMaps } from '@ionic-native/google-maps';
-//import { Geolocation } from '@ionic-native/geolocation';
+import { GoogleMaps } from '@ionic-native/google-maps';
 
 // Pages
 import { PlaceDetailPage } from './place-detail.page';
@@ -40,7 +40,8 @@ const routes: Routes = [
   providers: [
     PlacesService,
     CategoriesService,
-    //GoogleMaps
+    GoogleMaps,
+    //Platform,
   ]
 })
 export class PlaceDetailPageModule {}

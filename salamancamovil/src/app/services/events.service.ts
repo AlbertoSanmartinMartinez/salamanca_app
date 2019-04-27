@@ -2,10 +2,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
 
-//const apiUrl = "http://172.16.130.44:8000/cms/";
-//const apiUrl = "https://salamancacms.herokuapp.com/cms/";
+//const apiUrl = "http://192.168.1.46:8000/cms/";
+const apiUrl = "https://salamancacms.herokuapp.com/cms/";
 //const apiUrl = "http://192.168.1.42:8000/cms/";
-const apiUrl = "http://192.168.1.101:8000/cms/";
+//const apiUrl = "http://192.168.1.101:8000/cms/";
 
 @Injectable()
 export class EventsService {

@@ -17,7 +17,7 @@ import { CategoriesDirective } from './directives/categories.directive';
 //import { GoogleMaps } from '@ionic-native/google-maps';
 
 // Geolocation
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+//import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 // Modules
 import { HttpClientModule } from '@angular/common/http';
@@ -38,7 +38,7 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
     StatusBar,
     SplashScreen,
-    Geolocation,
+    //Geolocation,
     //GoogleMaps,
     {
       provide: RouteReuseStrategy,

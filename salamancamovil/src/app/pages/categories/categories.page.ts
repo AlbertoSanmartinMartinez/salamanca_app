@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from "rxjs"
 
 // Services
 import { CategoriesService } from '../../services/categories.service';
@@ -32,7 +33,7 @@ export class CategoriesPage implements OnInit {
 
   // Services
   getCategories() {
-    //console.log("get categories list function");
+    console.log("get categories list function");
 
     var parent_category_id = this.activatedRoute.snapshot.paramMap.get('parent_category_id');
     //console.log("parent category id");
@@ -87,12 +88,6 @@ export class CategoriesPage implements OnInit {
   // Navigate
   goBack() {
     console.log('go back function');
-
-    /*var paths = this.router.url.split("/");
-    var new_path = "/app";
-    for (var i=2; i < paths.length-1; i++) {
-      new_path += "/" + paths[i];
-    }*/
 
     this.router.navigate(['/app/categories', { parent_category_id: this.parent_category.categoria_padre }])
   }

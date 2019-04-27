@@ -54,8 +54,6 @@ export class PlacesPage implements OnInit {
         console.log(error);
       }
     );
-
-
   }
 
   getCategory(category_id?:string) {
@@ -88,7 +86,7 @@ export class PlacesPage implements OnInit {
 
   goBack() {
     console.log('go back function');
-    
+
     this.router.navigate(['/app/categories', { parent_category_id: this.category.categoria_padre }])
   }
 }
