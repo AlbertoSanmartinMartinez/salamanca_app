@@ -90,8 +90,16 @@
     </plugin>
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
+    <plugin name="cordova-plugin-ionic" spec="^5.3.0">
+        <variable name="APP_ID" value="62d7ed4a" />
+        <variable name="CHANNEL_NAME" value="Production" />
+        <variable name="UPDATE_METHOD" value="auto" />
+        <variable name="UPDATE_API" value="https://api.ionicjs.com" />
+        <variable name="MAX_STORE" value="2" />
+        <variable name="MIN_BACKGROUND_DURATION" value="30" />
+    </plugin>
     <plugin name="cordova-plugin-googlemaps" spec="^2.5.3">
-        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyA2SIm6WzQ3Tc1_i7M71SFAuvdcsJZJTHI" />
+        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyDLJidxQ2LpXSw9m0Q2SnHGzeFEn9d7dXg" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyA2SIm6WzQ3Tc1_i7M71SFAuvdcsJZJTHI" />
     </plugin>
     <engine name="android" spec="8.0.0" />
